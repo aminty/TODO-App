@@ -8,7 +8,7 @@ public interface UserMenuInterface {
     void signup() ;
     void login() ;
     void addActivity(User user);
-    void sortActivity();
+    void sortActivity(int id);
     void manageActivity(int id);
 
 }

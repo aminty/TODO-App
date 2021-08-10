@@ -73,9 +73,7 @@ public class ActivityRepoImpl extends BaseRepoImpl<Activity> implements Activity
         query.setParameter("id",id);
         //todo
         List<Activity> activities=query.getResultList();
-        for (Activity a : activities) {
-            System.out.println(a.toString());
-        }
+
         return activities;
     }
 }

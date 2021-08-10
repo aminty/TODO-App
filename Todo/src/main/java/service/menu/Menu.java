@@ -39,7 +39,7 @@ public class Menu {
                         Constant.INVALID_INPUT
                 ))) {
                     case 1 -> {
-                        ApplicationObject.getUserMenu().sortActivity();
+                        ApplicationObject.getUserMenu().sortActivity(user.getId());
                         Menu.runDashboardMenu(user);
 
                     }

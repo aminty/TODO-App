@@ -79,6 +79,7 @@ public class Activity extends BaseEntity {
         return "Activity{" +" id= "+getId()+
                 ", status=" + status +
                 ", activityName='" + activityName + '\'' +
+                ", date= "+date+
                 '}';
     }
 }

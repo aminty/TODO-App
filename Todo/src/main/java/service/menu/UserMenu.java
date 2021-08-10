@@ -7,6 +7,9 @@ import entity.enumeration.ActivityStatus;
 import service.ApplicationObject;
 import service.Constant;
 import service.PrintMessage;
+import service.sorter.SortByDate;
+import service.sorter.SortByName;
+import service.sorter.SortByStatus;
 
 import java.util.List;
 import java.util.Scanner;
@@ -79,7 +82,33 @@ public class UserMenu implements UserMenuInterface {
     }
 
     @Override
-    public void sortActivity() {
+    public void sortActivity(int userId) {
+        PrintMessage.printMenu(new String[]{"Sort by status" ,"Sort by date","Sort by name"});
+        List<Activity> list=ApplicationObject.getActivityRepo().sellectAll(userId);
+
+        int item=Integer.parseInt(ApplicationObject.getValidation().isValid(Constant.SINGLE_NUMBER_REGEX,"Choose sorting method: ",
+                Constant.INVALID_INPUT));
+        switch (item) {
+            case 1 -> {
+                list.sort(new SortByStatus());
+                for (Activity a : list) {
+                    System.out.println(a.toString());
+                }
+            }
+            case 2 -> {
+                list.sort(new SortByDate());
+                for (Activity a : list) {
+                    System.out.println(a.toString());
+                }
+            }
+            case 3 -> {
+                list.sort(new SortByName());
+                for (Activity a : list) {
+                    System.out.println(a.toString());
+                }
+            }
+        }
+
 
     }
 
@@ -87,6 +116,9 @@ public class UserMenu implements UserMenuInterface {
     public void manageActivity(int userId) {
         int count = 1;
         List<Activity> list=ApplicationObject.getActivityRepo().sellectAll(userId);
+        for (Activity a : list) {
+            System.out.println(a.toString());
+        }
         while (true) {
             if (!list.isEmpty()) {
             String id = ApplicationObject.getValidation().isValid(Constant.SINGLE_NUMBER_REGEX, "Enter id to change: ", Constant.INVALID_INPUT);
