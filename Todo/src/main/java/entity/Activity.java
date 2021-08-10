@@ -5,6 +5,7 @@ import entity.enumeration.ActivityStatus;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Activity extends BaseEntity {
@@ -14,8 +15,9 @@ public class Activity extends BaseEntity {
     @Column
     private String activityName;
     @Column
-    private Date date;
+    private LocalDate date;
     @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
     private User user;
 
 
@@ -23,7 +25,7 @@ public class Activity extends BaseEntity {
 
     }
 
-    public Activity(ActivityStatus status, String activityName, Date date, User user) {
+    public Activity(ActivityStatus status, String activityName, LocalDate date, User user) {
         this.status = status;
         this.activityName = activityName;
         this.date = date;
@@ -55,11 +57,11 @@ public class Activity extends BaseEntity {
         this.activityName = activityName;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -70,5 +72,13 @@ public class Activity extends BaseEntity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Activity{" +" id= "+getId()+
+                ", status=" + status +
+                ", activityName='" + activityName + '\'' +
+                '}';
     }
 }

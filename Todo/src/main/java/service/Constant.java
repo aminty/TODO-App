@@ -44,7 +44,7 @@ public class Constant {
     public static final String URL = "jdbc:mysql://localhost:3306/Digistore";
     public static final String USER = "root";
     public static final String PASSWORD = "aminty2015";
-    public static final String [] Dashboard_MENU_ITEM ={"Sort" ,"Add new","Exit"};
+    public static final String [] Dashboard_MENU_ITEM ={"Sort" ,"Add new","Manage","Exit"};
 
     public static final String GOODBYE = "See you ";
     public static final String ENTER_PRODUCT_ID = "Enter product id to add: ";

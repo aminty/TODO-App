@@ -5,11 +5,9 @@ import service.ApplicationObject;
 import service.Constant;
 import service.PrintMessage;
 
-import java.sql.SQLException;
-
 public class Menu {
 
-    public static void runPublicMenu()  {
+    public static void runPublicMenu() {
         PrintMessage.printMenu(Constant.PUBLIC_MENU_ITEM, Constant.WELCOM);
         {
             while (true) {
@@ -30,7 +28,7 @@ public class Menu {
         }
     }
 
-    public static void runDashboardMenu(User user){
+    public static void runDashboardMenu(User user) {
         PrintMessage.printMenu(Constant.Dashboard_MENU_ITEM, Constant.WELCOM + " (" + user.getName() + ")");
         outer:
         {
@@ -40,15 +38,19 @@ public class Menu {
                         Constant.ENTER_NUMERIC_CHOICE,
                         Constant.INVALID_INPUT
                 ))) {
-                    case 1 -> ApplicationObject.getUserMenu().addActivity();
-                    case 2 -> {
+                    case 1 -> {
                         ApplicationObject.getUserMenu().sortActivity();
-                        break outer;
-                    }
-                    case 3 -> {
-                        break outer;
-                    }
+                        Menu.runDashboardMenu(user);
 
+                    }
+                    case 2 -> {ApplicationObject.getUserMenu().addActivity(user);
+                        Menu.runDashboardMenu(user);
+                    }
+                    case 3 -> {ApplicationObject.getUserMenu().manageActivity(user.getId());
+                    Menu.runDashboardMenu(user);}
+                    case 4 -> {
+                        break outer;
+                    }
                     default -> PrintMessage.showErr(Constant.INVALID_INPUT);
                 }
             }
