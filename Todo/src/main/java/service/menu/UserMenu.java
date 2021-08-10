@@ -122,6 +122,7 @@ public class UserMenu implements UserMenuInterface {
         while (true) {
             if (!list.isEmpty()) {
             String id = ApplicationObject.getValidation().isValid(Constant.SINGLE_NUMBER_REGEX, "Enter id to change: ", Constant.INVALID_INPUT);
+            if(id.equals("0"))break;
             Activity activity = ApplicationObject.getActivityRepo().find(Integer.parseInt(id));
             if (activity!=null && activity.getUser().getId()==userId){
                 for (ActivityStatus ac : ActivityStatus.values()) {
